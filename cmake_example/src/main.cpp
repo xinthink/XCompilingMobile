@@ -1,8 +1,8 @@
 #include <iostream>
-#include <string>
+#include "example.hpp"
 
 int main(int argc, char* argv[]) {
-    std::string greeting = "Hello from CMake example!";
-    std::cout << greeting << std::endl;
+    cmake_example::Greeter greeter;
+    std::cout << greeter.get_greeting() << std::endl;
     return 0;
 }

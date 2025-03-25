@@ -1,14 +1,18 @@
 #include <iostream>
+#include "example.hpp"
 
 bool run_tests() {
-    // Add your test cases here
     bool test_passed = true;
 
-    // Example test
-    if (true) {
-        std::cout << "Basic test passed" << std::endl;
+    // Test Greeter class
+    cmake_example::Greeter greeter;
+    std::string expected_greeting = "Hello from CMake example!";
+    std::string actual_greeting = greeter.get_greeting();
+
+    if (actual_greeting == expected_greeting) {
+        std::cout << "Greeter test passed" << std::endl;
     } else {
-        std::cout << "Basic test failed" << std::endl;
+        std::cout << "Greeter test failed" << std::endl;
         test_passed = false;
     }
 

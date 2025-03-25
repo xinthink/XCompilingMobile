@@ -10,9 +10,7 @@ public:
     Greeter() = default;
     ~Greeter() = default;
 
-    std::string get_greeting() const {
-        return "Hello from CMake example!";
-    }
+    std::string get_greeting() const;
 };
 
 } // namespace cmake_example
