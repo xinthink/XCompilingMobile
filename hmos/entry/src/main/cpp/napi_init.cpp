@@ -1,4 +1,16 @@
 #include "napi/native_api.h"
+#include "example.hpp"
+
+static napi_value GetGreeting(napi_env env, napi_callback_info info)
+{
+    cmake_example::Greeter greeter;
+    std::string greeting = greeter.get_greeting();
+
+    napi_value result;
+    napi_create_string_utf8(env, greeting.c_str(), greeting.length(), &result);
+
+    return result;
+}
 
 static napi_value Add(napi_env env, napi_callback_info info)
 {
@@ -23,14 +35,14 @@ static napi_value Add(napi_env env, napi_callback_info info)
     napi_create_double(env, value0 + value1, &sum);
 
     return sum;
-
 }
 
 EXTERN_C_START
 static napi_value Init(napi_env env, napi_value exports)
 {
     napi_property_descriptor desc[] = {
-        { "add", nullptr, Add, nullptr, nullptr, nullptr, napi_default, nullptr }
+        { "add", nullptr, Add, nullptr, nullptr, nullptr, napi_default, nullptr },
+        { "getGreeting", nullptr, GetGreeting, nullptr, nullptr, nullptr, napi_default, nullptr }
     };
     napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
     return exports;
